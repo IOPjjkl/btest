@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Максимальный звук</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #202124;
+            font-family: Arial, sans-serif;
+            color: #e8eaed;
+            text-align: center;
+            overflow: hidden;
+        }
+        button {
+            padding: 20px 40px;
+            font-size: 18px;
+            background-color: #8ab4f8;
+            color: #202124;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        p {
+            font-size: 16px;
+            color: #9aa0a6;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Нажми для максимального звука!</h1>
+        <p>Убедись, что громкость телефона на максимуме</p>
+        <button onclick="playSound()">Включить</button>
+    </div>
+
+    <audio id="loudSound" src="sound.mp3" loop></audio>
+
+    <script>
+        function playSound() {
+            const audio = document.getElementById('loudSound');
+            audio.volume = 1.0; // Максимальная громкость в пределах аудиоэлемента
+            audio.play()
+                .then(() => {
+                    console.log('Звук воспроизводится');
+                    document.querySelector('h1').textContent = 'Звук включен!';
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                    alert('Не удалось воспроизвести звук. Проверьте файл и попробуйте снова.');
+                });
+        }
+    </script>
+</body>
+</html>
